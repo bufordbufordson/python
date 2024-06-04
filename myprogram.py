@@ -39,6 +39,3 @@ def isweird(n):
     else: return 1 # n is weird 
     
 main()
-
-end = time() 
-print("Execution time: ", round(end - start, 2), "s")
