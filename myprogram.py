@@ -24,7 +24,7 @@ def isweird(n):
     if difference <= 0: 
         if difference == 0: primitivesp_nos.add(n)
         return 0
-    # Code from Jerome Richard: stackoverflow.com/questions/6800193
+    # Next 10 lines from Jerome Richard: stackoverflow.com/questions/6800193
     divisors = [1]; last_prime = 0; fctr = 0; slice_len = 0
     for prime in pr_fctrs:
         if last_prime != prime: slice_len = len(divisors); fctr = prime
