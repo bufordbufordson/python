@@ -6,8 +6,7 @@ from ordered_set import OrderedSet
 primitivesp_nos = set(); primes = OrderedSet([])
 
 def main(): 
-    x = 2; weird_nos = []
-    n = 10000
+    x = 2; weird_nos = []; n = 10000
     while n > 0:
         if isweird(x) == 1: weird_nos.append(x); n = n - 1
         x = x + 1        
