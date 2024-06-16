@@ -18,8 +18,7 @@ def isweird(n):
         b = a 
         while a % i == 0: pr_fctrs.append(i); a = a//i
         if i * i > a: break
-        if b != a:
-            if a in primes: pr_fctrs.append(a); a = 1; break
+        if b != a and a in primes: pr_fctrs.append(a); a = 1; break
     if a > 1: pr_fctrs.append(a)
     if a == n: primes.add(n); return 0 
     sum_fctrs = 1; divisors = set(pr_fctrs) 
