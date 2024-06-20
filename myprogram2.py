@@ -1,8 +1,4 @@
 """ uses not n % i instead of n % i == 0 to optimize myprogram.py """
-from time import time
-
-start = time()
-
 semiperfects = set(); primes = []
 
 def main(): 
@@ -44,6 +40,3 @@ def isweird(n):
     return isweird 
     
 main()
-
-end = time() 
-print("Execution time: ", round(end - start, 2), "s")
