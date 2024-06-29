@@ -1,4 +1,3 @@
-""" uses not n % i instead of n % i == 0 to optimize myprogram.py """
 semiperfects = set(); primes = []
 
 def main(): 
