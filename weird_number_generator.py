@@ -19,15 +19,14 @@ primes: List[int] = []
 def is_weird(x):
     prime_divisors = get_prime_divisors(x)
 
-    sum_factors = 1
-    divs = set(prime_divisors)
-    for i in divs:
-        sum_factors = sum_factors * (i ** (prime_divisors.count(i) + 1) - 1) // (i - 1)
+    sum_factors = calculate_sum_of_factors(prime_divisors)
     df = sum_factors - 2 * x
+
     if df <= 0:
         if df == 0:
             semi_perfects.add(x)
         return 0
+
     divs = [1]
     last_prime = 0
     fctr = 0
@@ -45,19 +44,25 @@ def is_weird(x):
             else:
                 return 0
         last_prime = prime
+
     x = 1
     divs.pop(-1)
     divs = {i for i in divs if i <= df}
     target = x - (df + x - sum(divs))
-    if target < 0: return 1
-    for d in divs: x |= x << d
+
+    if target < 0:
+        return 1
+
+    for d in divs:
+        x |= x << d
+
     if x >> target & 1:
         semi_perfects.add(x)
         isweird = 0
     else:
         isweird = 1
-    return isweird
 
+    return isweird
 
 def get_prime_divisors(x: int) -> List[int]:
     prime_divisors = []
@@ -73,3 +78,10 @@ def get_prime_divisors(x: int) -> List[int]:
         if a == x:
             primes.append(x)
     return prime_divisors
+
+def calculate_sum_of_factors(prime_divisors: List[int]) -> int:
+    divs = set(prime_divisors)
+    sum_factors = 1
+    for i in divs:
+        sum_factors = sum_factors * (i ** (prime_divisors.count(i) + 1) - 1) // (i - 1)
+    return sum_factors
