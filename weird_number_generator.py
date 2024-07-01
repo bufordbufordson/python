@@ -1,6 +1,5 @@
+from typing import Set, List
 
-semi_perfects = set()
-primes = []
 
 def print_weird_numbers(n):
     candidate = 2
@@ -13,28 +12,21 @@ def print_weird_numbers(n):
     print("\ndone.")
 
 
+semi_perfects: Set[int] = set()
+primes: List[int] = []
+
+
 def is_weird(x):
-    global primes
-    global semi_perfects
-    prime_divisors = []
-    a = x
-    for i in primes:
-        while a % i == 0:
-            prime_divisors.append(i)
-            a = a // i
-        if i * i > a: break
-    if a > 1:
-        prime_divisors.append(a)
-        if a == x:
-            primes.append(x)
-            return 0
-    sum_fctrs = 1
+    prime_divisors = get_prime_divisors(x)
+
+    sum_factors = 1
     divs = set(prime_divisors)
     for i in divs:
-        sum_fctrs = sum_fctrs * (i ** (prime_divisors.count(i) + 1) - 1) // (i - 1)
-    df = sum_fctrs - 2 * x
+        sum_factors = sum_factors * (i ** (prime_divisors.count(i) + 1) - 1) // (i - 1)
+    df = sum_factors - 2 * x
     if df <= 0:
-        if df == 0: semi_perfects.add(x)
+        if df == 0:
+            semi_perfects.add(x)
         return 0
     divs = [1]
     last_prime = 0
@@ -65,3 +57,19 @@ def is_weird(x):
     else:
         isweird = 1
     return isweird
+
+
+def get_prime_divisors(x: int) -> List[int]:
+    prime_divisors = []
+    a = x
+    for i in primes:
+        while a % i == 0:
+            prime_divisors.append(i)
+            a //= i
+        if i * i > a:
+            break
+    if a > 1:
+        prime_divisors.append(a)
+        if a == x:
+            primes.append(x)
+    return prime_divisors
