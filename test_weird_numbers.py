@@ -1,7 +1,7 @@
 # test_weird_numbers.py
 
 import unittest
-from weird_number_generator import is_weird
+from weird_number_finder import is_weird
 
 
 class TestWeirdNumbers(unittest.TestCase):

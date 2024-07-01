@@ -1,17 +1,6 @@
 from typing import Set, List
 
 
-def print_weird_numbers(n):
-    candidate = 2
-    while n > 0:
-        if is_weird(candidate) == 1:
-            end = "\n" if n % 20 == 0 else " "
-            print(candidate, end=end)
-            n = n - 1
-        candidate = candidate + 1
-    print("\ndone.")
-
-
 semi_perfects: Set[int] = set()
 primes: List[int] = []
 
@@ -64,6 +53,7 @@ def is_weird(x):
 
     return isweird
 
+
 def get_prime_divisors(x: int) -> List[int]:
     prime_divisors = []
     a = x
@@ -78,6 +68,7 @@ def get_prime_divisors(x: int) -> List[int]:
         if a == x:
             primes.append(x)
     return prime_divisors
+
 
 def calculate_sum_of_factors(prime_divisors: List[int]) -> int:
     divs = set(prime_divisors)
