@@ -16,36 +16,36 @@ def is_weird(x):
     if df == 0:
         semi_perfects.add(x)
 
-    divs = [1]
+    divisors = [1]
     last_prime = 0
-    fctr = 0
+    factor = 0
     slice_len = 0
     for prime in prime_divisors:
         if last_prime != prime:
-            slice_len = len(divs)
-            fctr = prime
+            slice_len = len(divisors)
+            factor = prime
         else:
-            fctr *= prime
+            factor *= prime
         for i in range(slice_len):
-            div = divs[i] * fctr
+            div = divisors[i] * factor
             if div not in semi_perfects:
-                divs.append(div)
+                divisors.append(div)
             else:
                 return 0
         last_prime = prime
 
-    x = 1
-    divs.pop(-1)
-    divs = {i for i in divs if i <= df}
-    target = x - (df + x - sum(divs))
+    num = 1
+    divisors.pop()
+    divisors = { i for i in divisors if i <= df }
+    target = num - (df + num - sum(divisors))
 
     if target < 0:
         return 1
 
-    for d in divs:
-        x |= x << d
+    for divisor in divisors:
+        num |= num << divisor
 
-    if x >> target & 1:
+    if num >> target & 1:
         semi_perfects.add(x)
         isweird = 0
     else:
