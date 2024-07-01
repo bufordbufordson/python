@@ -6,15 +6,15 @@ primes: List[int] = []
 
 
 def is_weird(x):
-    prime_divisors = get_prime_divisors(x)
+    prime_divisors = get_prime_divisors(x, primes)
 
     sum_factors = calculate_sum_of_factors(prime_divisors)
     df = sum_factors - 2 * x
 
-    if df <= 0:
-        if df == 0:
-            semi_perfects.add(x)
+    if df < 0:
         return 0
+    if df == 0:
+        semi_perfects.add(x)
 
     divs = [1]
     last_prime = 0
@@ -54,7 +54,7 @@ def is_weird(x):
     return isweird
 
 
-def get_prime_divisors(x: int) -> List[int]:
+def get_prime_divisors(x: int, primes: List[int]) -> List[int]:
     prime_divisors = []
     a = x
     for i in primes:
