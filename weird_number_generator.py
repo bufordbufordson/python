@@ -1,24 +1,11 @@
+
 semi_perfects = set()
 primes = []
-
-
-def main():
-    try:
-        n = int(input("How many weird numbers would you like to generate? "))
-        if n <= 0:
-            print("The number must be positive")
-            return
-
-        print("The first", n, "weird numbers:")
-        print_weird_numbers(n)
-    except ValueError:
-        print("That was not a valid integer.")
-
 
 def print_weird_numbers(n):
     candidate = 2
     while n > 0:
-        if isweird(candidate) == 1:
+        if is_weird(candidate) == 1:
             end = "\n" if n % 20 == 0 else " "
             print(candidate, end=end)
             n = n - 1
@@ -26,7 +13,7 @@ def print_weird_numbers(n):
     print("\ndone.")
 
 
-def isweird(x):
+def is_weird(x):
     global primes
     global semi_perfects
     prime_divisors = []
@@ -78,6 +65,3 @@ def isweird(x):
     else:
         isweird = 1
     return isweird
-
-
-main()
